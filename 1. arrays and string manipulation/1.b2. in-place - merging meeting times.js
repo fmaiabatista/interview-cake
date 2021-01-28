@@ -16,23 +16,28 @@ expected = [
 ];
 
 function mergeRanges(meetings) {
-  const meetingsCopy = JSON.parse(JSON.stringify(meetings));
-  const sortedMeetings = meetingsCopy.sort((a, b) => a.startTime - b.startTime);
-  
-  const mergedMeetings = [sortedMeetings[0]];
+  meetings.sort((a, b) => a.startTime - b.startTime);
 
-  for (let i = 1; i < sortedMeetings.length; i++) {
-    currentMeeting = sortedMeetings[i]
-    lastMergedMeeting = mergedMeetings[mergedMeetings.length - 1]
+  for (let i = 1; i < meetings.length; i++) {
+    currentMeeting = meetings[i]
+    lastMergedMeeting = meetings[i - 1]
+
+    console.debug("\n\n", i)
+    console.debug("currentMeeting", currentMeeting)
+    console.debug("lastMergedMeeting", lastMergedMeeting)
 
     if (currentMeeting.startTime <= lastMergedMeeting.endTime) {
       lastMergedMeeting.endTime = Math.max(lastMergedMeeting.endTime, currentMeeting.endTime)
+      meetings.splice(i, 1)
+      i--
+      console.debug("meetings", meetings)
     } else {
-      mergedMeetings.push(currentMeeting)
+      console.debug("meetings", meetings)
+      continue;
     }
   }
 
-  return mergedMeetings;
+  return meetings;
 }
 
 const answer = mergeRanges(input);
