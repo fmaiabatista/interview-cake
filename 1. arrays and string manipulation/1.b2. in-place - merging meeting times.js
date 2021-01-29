@@ -36,11 +36,10 @@ function mergeRanges(meetings) {
       continue;
     }
   }
-
-  return meetings;
 }
 
-const answer = mergeRanges(input);
+mergeRanges(input)
+const answer = input;
 const assert = JSON.stringify(answer) === JSON.stringify(expected);
 
 console.clear();
