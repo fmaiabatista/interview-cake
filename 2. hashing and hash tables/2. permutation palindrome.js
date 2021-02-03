@@ -1,7 +1,7 @@
 function hasPalindromePermutation(theString) {
 
   // Check if any permutation of the input is a palindrome
-  const charCountList = {} // O(n) space
+  const charCountList = {} // O(n) space*
   let charsOccurringOddTimesCount = 0
   
   // go over the string and count char occurrences // O(n) time
@@ -33,6 +33,10 @@ function hasPalindromePermutation(theString) {
   
   return true;
 }
+
+// * We could say O(n) space complexity but given we can consider
+// a character set to be limited (ASCII ~128, Unicode ~110.000),
+// it is possible to say that the space complexity is constant O(1)
 
 // Official answer
 
